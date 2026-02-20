@@ -1,0 +1,478 @@
+/* =========================
+   ROOT VARIABLES
+========================= */
+:root {
+  --accent: #d4af37; /* gold luxury color */
+  --accent-dark: #b8962f;
+  --text-muted: #b3b3b3;
+  --body-bg: #0b0b0b;
+  --body-color: #fff;
+  --font-family: 'Inter', sans-serif;
+}
+
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--body-color);
+  background: var(--body-bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+  width: 100%;
+  background: rgba(0,0,0,0.85);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 18px 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+}
+
+.navbar .logo {
+  font-weight: 900;
+  font-size: 1.7rem;
+  letter-spacing: 2px;
+  color: var(--accent);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links li a {
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: var(--accent);
+}
+
+.cta {
+  background: var(--accent);
+  padding: 10px 26px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.cta:hover {
+  background: var(--accent-dark);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* =========================
+   SECTION BACKGROUNDS
+========================= */
+.section-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 100%;
+}
+
+/* Overlay for readability */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+/* =========================
+   HERO
+========================= */
+.hero {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 720px;
+  padding: 0 20px;
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.7);
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 28px;
+  color: #e0e0e0;
+}
+
+.btn-primary {
+  padding: 14px 32px;
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+  border-radius: 6px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: var(--accent-dark);
+  transform: scale(1.05);
+  color: #fff;
+}
+
+/* =========================
+   PURPOSE
+========================= */
+.purpose {
+  padding: 120px 5%;
+  text-align: center;
+  min-height: 60vh;
+}
+
+.text-block h2 {
+  font-size: 2.6rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  color: var(--accent);
+}
+
+.text-block p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: auto;
+  color: #ccc;
+  line-height: 1.8;
+}
+
+/* =========================
+   STATS
+========================= */
+.stats {
+  padding: 100px 5%;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+.stat h3 {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.stat p {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* =========================
+   STORIES (IMAGE HOVER)
+========================= */
+.stories {
+  padding: 140px 5%;
+  text-align: center;
+}
+
+.stories h2 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin-bottom: 60px;
+  color: var(--accent);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.story-card {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+}
+
+.story-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.2));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.story-card:hover .story-overlay {
+  opacity: 1;
+}
+
+.story-overlay h3 {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.story-overlay p {
+  color: #ccc;
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
+
+/* =========================
+   MONETIZATION
+========================= */
+.monetization {
+  padding: 140px 5%;
+  background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+  text-align: center;
+}
+
+.monetization h2 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin-bottom: 60px;
+  color: var(--accent);
+}
+
+.money-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.money-card {
+  background: #161616;
+  padding: 36px;
+  border-radius: 12px;
+  border-left: 4px solid var(--accent);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.money-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+}
+
+.money-card h4 {
+  font-size: 1.3rem;
+  margin-bottom: 14px;
+}
+
+.money-card p {
+  color: #b3b3b3;
+  line-height: 1.6;
+}
+
+/* =========================
+   APP SECTION
+========================= */
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  padding: 120px 5%;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+}
+
+.app .overlay {
+  background: rgba(0,0,0,0.55);
+}
+
+.app-text h2 {
+  font-size: 2.6rem;
+  font-weight: 900;
+  margin-bottom: 18px;
+  color: var(--accent);
+}
+
+.app-text p {
+  font-size: 1.1rem;
+  margin-bottom: 28px;
+  color: #fff;
+}
+
+.btn-secondary {
+  padding: 14px 32px;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--accent);
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* =========================
+   INVESTOR DASHBOARD
+========================= */
+.investor {
+  padding: 160px 5%;
+  background: #0f0f0f;
+  text-align: center;
+}
+
+.investor h2 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin-bottom: 14px;
+  color: var(--accent);
+}
+
+.investor-sub {
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto 80px auto;
+  font-size: 1rem;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.metric-card {
+  background: linear-gradient(180deg, #161616, #0f0f0f);
+  border-radius: 12px;
+  padding: 36px 28px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+}
+
+.metric-card h3 {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.metric-card span {
+  display: block;
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.metric-card.highlight {
+  border-left: 4px solid var(--accent);
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  background: #111;
+  padding: 48px 5%;
+  text-align: center;
+  color: #9aa0a6;
+  font-size: 0.95rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1024px) {
+  .hero h1 { font-size: 2.6rem; }
+  .text-block h2, .stories h2, .monetization h2, .app-text h2, .investor h2 { font-size: 2rem; }
+}
+
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.2rem; }
+  .text-block p, .app-text p, .stat p, .story-overlay p { font-size: 0.95rem; }
+  .stats-grid, .story-grid, .money-grid, .dashboard { gap: 20px; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.8rem; }
+  .btn-primary, .btn-secondary, .cta { padding: 10px 20px; font-size: 0.9rem; }
+  .navbar .nav-container { flex-direction: column; gap: 12px; }
+  .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+}
+
+/* =========================
+   FADE-IN ON SCROLL
+========================= */
+.before-appear {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.appear {
+  opacity: 1;
+  transform: translateY(0);
+}
