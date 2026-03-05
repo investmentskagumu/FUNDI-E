@@ -91,6 +91,7 @@ a {
   background: var(--accent-dark);
   color: #fff;
   transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(212,175,55,0.5);
 }
 
 /* =========================
@@ -104,7 +105,6 @@ a {
   width: 100%;
 }
 
-/* Overlay for readability */
 .overlay {
   position: absolute;
   inset: 0;
@@ -120,6 +120,7 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative;
 }
 
 .hero-content {
@@ -127,6 +128,14 @@ a {
   max-width: 720px;
   padding: 0 20px;
   color: #fff;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease-out;
+}
+
+.hero-content.animate-hero {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero h1 {
@@ -157,6 +166,7 @@ a {
   background: var(--accent-dark);
   transform: scale(1.05);
   color: #fff;
+  box-shadow: 0 6px 20px rgba(212,175,55,0.5);
 }
 
 /* =========================
@@ -205,6 +215,12 @@ a {
   font-weight: 900;
   color: var(--accent);
   margin-bottom: 6px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.stat h3.animate {
+  transform: scale(1.1);
 }
 
 .stat p {
@@ -245,8 +261,8 @@ a {
 }
 
 .story-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.7);
 }
 
 .story-overlay {
@@ -258,11 +274,13 @@ a {
   justify-content: flex-end;
   padding: 28px;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transform: translateY(100%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .story-card:hover .story-overlay {
   opacity: 1;
+  transform: translateY(0);
 }
 
 .story-overlay h3 {
@@ -306,12 +324,12 @@ a {
   padding: 36px;
   border-radius: 12px;
   border-left: 4px solid var(--accent);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.4s ease;
 }
 
 .money-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.6);
 }
 
 .money-card h4 {
@@ -367,6 +385,7 @@ a {
   background: var(--accent);
   color: #000;
   transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(212,175,55,0.5);
 }
 
 /* =========================
@@ -406,7 +425,7 @@ a {
   padding: 36px 28px;
   text-align: center;
   border: 1px solid rgba(255,255,255,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.4s ease;
 }
 
 .metric-card:hover {
@@ -418,6 +437,8 @@ a {
   font-size: 2.4rem;
   font-weight: 900;
   color: var(--accent);
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
 
 .metric-card span {
@@ -464,7 +485,7 @@ footer {
 }
 
 /* =========================
-   FADE-IN ON SCROLL
+   FADE-IN / SCROLL ANIMATIONS
 ========================= */
 .before-appear {
   opacity: 0;
@@ -473,6 +494,42 @@ footer {
 }
 
 .appear {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   PARALLAX BACKGROUND SUPPORT
+========================= */
+.hero-bg, .purpose-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/* =========================
+   BUTTON / CARD HOVER EFFECTS
+========================= */
+.btn-primary, .btn-secondary, .cta {
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover, .btn-secondary:hover, .cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(212,175,55,0.5);
+}
+
+.money-card:hover, .metric-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.6);
+}
+
+.story-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+}
+
+.story-card:hover .story-overlay {
   opacity: 1;
   transform: translateY(0);
 }
