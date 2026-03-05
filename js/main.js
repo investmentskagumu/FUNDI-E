@@ -1,13 +1,5 @@
 // =============================
-// HERO ANIMATION ON LOAD
-// =============================
-window.addEventListener('DOMContentLoaded', () => {
-  const hero = document.querySelector('.hero-content');
-  hero.classList.add('animate-hero');
-});
-
-// =============================
-// SIMPLE SECTION FADE-IN (scroll)
+// SIMPLE SCROLL FADE-IN FOR SECTIONS
 // =============================
 const sections = document.querySelectorAll("section");
 
@@ -16,7 +8,6 @@ const sectionObserver = new IntersectionObserver(entries => {
     if (entry.isIntersecting) {
       entry.target.style.opacity = 1;
       entry.target.style.transform = "translateY(0)";
-      sectionObserver.unobserve(entry.target);
     }
   });
 }, { threshold: 0.15 });
@@ -26,6 +17,45 @@ sections.forEach(section => {
   section.style.transform = "translateY(40px)";
   section.style.transition = "all 0.8s ease";
   sectionObserver.observe(section);
+});
+
+// =============================
+// FADE-IN FOR SPECIFIC ELEMENTS
+// =============================
+const faders = document.querySelectorAll('.text-block, .story-card, .money-card, .app-text, .stat');
+
+const appearOptions = {
+  threshold: 0.2,
+  rootMargin: "0px 0px -50px 0px"
+};
+
+const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('appear');
+    observer.unobserve(entry.target);
+  });
+}, appearOptions);
+
+faders.forEach(fader => {
+  fader.classList.add('before-appear');
+  appearOnScroll.observe(fader);
+});
+
+// =============================
+// SMOOTH SCROLL FOR NAV & BUTTONS
+// =============================
+document.querySelectorAll('.nav-links a, .cta, .btn-primary, .btn-secondary').forEach(link => {
+  link.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      window.scrollTo({
+        top: target.offsetTop - 70,
+        behavior: 'smooth'
+      });
+    }
+  });
 });
 
 // =============================
@@ -58,9 +88,8 @@ function parseMetric(text) {
   return parseInt(text);
 }
 
-// Trigger count-up when metrics come into view
 function animateMetrics() {
-  const metrics = document.querySelectorAll('.metric-card h3, .stat h3');
+  const metrics = document.querySelectorAll('.metric-card h3');
   const triggerPoint = window.innerHeight * 0.8;
   metrics.forEach(metric => {
     const rect = metric.getBoundingClientRect();
@@ -68,75 +97,33 @@ function animateMetrics() {
       metric.dataset.animated = true;
       const endValue = parseMetric(metric.innerText);
       countUp(metric, 0, endValue, 1500);
+      metric.classList.add('animate');
     }
   });
 }
+
 window.addEventListener('scroll', animateMetrics);
 window.addEventListener('load', animateMetrics);
 
 // =============================
-// FADE-IN ON SCROLL FOR SECTIONS
+// HERO ANIMATION ON LOAD
 // =============================
-const faders = document.querySelectorAll('.text-block, .story-card, .money-card, .app-text, .stat');
-
-faders.forEach(fader => fader.classList.add('before-appear'));
-
-const appearOptions = {
-  threshold: 0.2,
-  rootMargin: "0px 0px -50px 0px"
-};
-
-const appearOnScroll = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('appear');
-    observer.unobserve(entry.target);
-  });
-}, appearOptions);
-
-faders.forEach(fader => appearOnScroll.observe(fader));
-
-// =============================
-// SMOOTH SCROLL FOR NAV LINKS
-// =============================
-document.querySelectorAll('.nav-links a, .cta, .btn-primary, .btn-secondary').forEach(link => {
-  link.addEventListener('click', function(e) {
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      window.scrollTo({
-        top: target.offsetTop - 70, // navbar offset
-        behavior: 'smooth'
-      });
-    }
-  });
+window.addEventListener('load', () => {
+  const heroContent = document.querySelector('.hero-content');
+  if (heroContent) {
+    setTimeout(() => {
+      heroContent.classList.add('animate-hero');
+    }, 200);
+  }
 });
 
 // =============================
-// PARALLAX BACKGROUND
+// RESIZE HANDLING FOR MOBILE LAYOUTS
 // =============================
-window.addEventListener('scroll', () => {
-  const hero = document.querySelector('.hero-bg');
-  const purpose = document.querySelector('.purpose-bg');
-  const scrollY = window.scrollY;
+function fixMobileOverflow() {
+  document.body.style.width = "100%";
+  document.body.style.overflowX = "hidden";
+}
 
-  if(hero) hero.style.backgroundPosition = `center ${scrollY * 0.3}px`;
-  if(purpose) purpose.style.backgroundPosition = `center ${scrollY * 0.2}px`;
-});
-
-// =============================
-// HERO & STORY ANIMATION CLASSES (CSS dependent)
-// =============================
-// Add in style.css:
-/*
-.hero-content { opacity:0; transform:translateY(30px); transition: all 1s ease-out; }
-.hero-content.animate-hero { opacity:1; transform:translateY(0); }
-
-.before-appear { opacity:0; transform:translateY(50px); transition: all 0.8s ease-out; }
-.appear { opacity:1; transform:translateY(0); }
-
-.story-card { overflow:hidden; transition: transform 0.5s ease; }
-.story-card:hover { transform:scale(1.05); }
-.story-overlay { transform:translateY(100%); transition: transform 0.5s ease; }
-.story-card:hover .story-overlay { transform:translateY(0); }
-*/
+window.addEventListener('resize', fixMobileOverflow);
+fixMobileOverflow();
